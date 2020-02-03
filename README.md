@@ -123,3 +123,52 @@ gql mdeploy
 ```
 
 and follow the prompts.
+
+
+## Basic Query
+
+
+{
+  solveLinearCPProblem(
+    vars: [
+      { id: "x", lowerBound: 0, upperBound: 50 }
+      { id: "y", lowerBound: 0, upperBound: 50 }
+      { id: "z", lowerBound: 0, upperBound: 50 }
+    ]
+    constraints: [
+      {
+        id: "ct"
+        lowerBound: 0
+        upperBound: 50
+        coefficients: [{ id: "x", value: 2 }, { id: "y", value: 7 }, { id: "z", value: 3 }]
+      }
+      {
+        id: "ct2"
+        lowerBound: 0
+        upperBound: 45
+        coefficients: [{ id: "x", value: 3 }, { id: "y", value: -5 }, { id: "z", value: 7 }]
+      }
+      {
+        id: "ct3"
+        lowerBound: 0
+        upperBound: 37
+        coefficients: [{ id: "x", value: 5 }, { id: "y", value: 2 }, { id: "z", value: -6 }]
+      }
+    ]
+
+    objective: {
+      id: "obj"
+      coefficients: [{ id: "x", value: 2 }, { id: "y", value: 2 }, { id: "z", value: 3 }]
+      maximize: true
+    }
+  ) {
+    id
+    status
+    objectiveValue
+    varValues {
+      id
+      value
+    }
+  }
+}
+
