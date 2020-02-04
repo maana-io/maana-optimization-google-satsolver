@@ -1,6 +1,12 @@
 FROM tiangolo/uvicorn-gunicorn:python3.7
 
-RUN pip install ariadne graphqlclient uvicorn gunicorn asgi-lifespan python-dotenv requests numpy
-RUN pip install ortools
+WORKDIR /
 
+COPY requirements.txt /requirements.txt
+RUN pip3 install -r requirements.txt
+RUN pip install ortools
 COPY ./app /app
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
+

@@ -6,7 +6,6 @@ from graphqlclient import GraphQLClient
 
 # HTTP request library for access token call
 import requests
-import numpy as np
 # .env
 from dotenv import load_dotenv
 import os
