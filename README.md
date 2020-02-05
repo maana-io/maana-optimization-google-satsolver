@@ -167,8 +167,7 @@ and follow the prompts.
     objectiveValue
     varValues {
       id
-      value
     }
-  }
+  } 
 }
 

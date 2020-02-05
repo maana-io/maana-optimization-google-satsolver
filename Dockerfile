@@ -5,8 +5,13 @@ WORKDIR /
 COPY requirements.txt /requirements.txt
 RUN pip3 install -r requirements.txt
 RUN pip install ortools
+
+
 COPY ./app /app
+COPY .env /.env
+COPY ./gunicorn_conf.py /
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
-
+EXPOSE 8050
+CMD /start.sh
