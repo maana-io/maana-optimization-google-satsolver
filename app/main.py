@@ -179,6 +179,9 @@ def resolve_solveLinearCPProblem(*_, vars, constraints, objective):
 
     if(objective["maximize"]):
         model.Maximize( sum( (varDict[coef["id"]] * coef["value"] for coef in objective["coefficients"]))  )
+    else:
+        model.Minimize( sum( (varDict[coef["id"]] * coef["value"] for coef in objective["coefficients"]))  )
+
 
     # Run Solver
     solver = cp_model.CpSolver()
