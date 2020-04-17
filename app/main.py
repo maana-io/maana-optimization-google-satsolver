@@ -189,9 +189,9 @@ def resolve_solveLinearCPProblem(*_, vars, constraints, objective):
     solver = cp_model.CpSolver()
     status = solver.Solve(model)
 
+    varValues = []
     if status == cp_model.OPTIMAL:
         status = "OPTIMAL"
-        varValues = []
         for key, item in varDict.items():
             varValues.append({"id": key, "value": solver.Value(item)})
         
@@ -205,8 +205,8 @@ def resolve_solveLinearCPProblem(*_, vars, constraints, objective):
       return {
             "id": "NO SOLUTION",
             "status": status,
-            "objectiveValue": solver.ObjectiveValue(),
-            "varValues": varValues
+            "objectiveValue": 0,
+            "varValues": []
         }
 
 

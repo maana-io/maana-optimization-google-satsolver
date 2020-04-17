@@ -5,3 +5,4 @@ asgi-lifespan==0.6.0        #latest is 1.0.0 and is not backward compatible
 python-dotenv==0.10.3
 requests
 graphqlclient==0.2.4
+ortools
