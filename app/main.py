@@ -172,9 +172,11 @@ def resolve_solveLinearCPProblem(*_, vars, constraints, objective):
 
     # Create Constraints
     # model.Add(var1*coeff1 + var2*coeff2 <= upperBound)
-    
+    # AddLinearConstraint(self, linear_expr, lb, ub)
     for constraint in constraints:
-        model.Add(sum( (varDict[coef["id"]] * coef["value"] for coef in constraint["coefficients"]))  <= constraint["upperBound"])
+        #model.Add(   sum( (varDict[coef["id"]] * coef["value"] for coef in constraint["coefficients"]))  <= constraint["upperBound"])
+        #model.Add(   sum( (varDict[coef["id"]] * coef["value"] for coef in constraint["coefficients"]))  >= constraint["lowerBound"])
+        model.AddLinearConstraint(sum( (varDict[coef["id"]] * coef["value"] for coef in constraint["coefficients"])), constraint["lowerBound"], constraint["upperBound"])
     # Create Objective
 
     if(objective["maximize"]):
@@ -199,6 +201,14 @@ def resolve_solveLinearCPProblem(*_, vars, constraints, objective):
             "objectiveValue": solver.ObjectiveValue(),
             "varValues": varValues
         }
+    else:
+      return {
+            "id": "NO SOLUTION",
+            "status": status,
+            "objectiveValue": solver.ObjectiveValue(),
+            "varValues": varValues
+        }
+
 
 
 #end of Simple Constraint Programming Resolver   
